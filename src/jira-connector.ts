@@ -53,6 +53,14 @@ export class JiraConnector {
     }
   }
 
+  async addJiraComment(id: string, comment: string): Promise<JIRA.Issue> {
+    const url = `/issue/${id}/comment`;
+    const response = await this.client.post<JIRA.Issue>(url,{
+      body: comment
+    });
+    return response.data;
+  }
+
   async getIssue(id: string): Promise<JIRA.Issue> {
     const url = `/issue/${id}?fields=project,summary,issuetype`;
     const response = await this.client.get<JIRA.Issue>(url);
