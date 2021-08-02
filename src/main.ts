@@ -37,7 +37,7 @@ async function run(): Promise<void> {
         prBodyText.lastIndexOf("Checklist")
       );
     const prDescription = prLink + "\n\n" + convert(prBodyText,options);
-    await jiraConnector.addTicketComment(issueKey,prDescription);
+    await jiraConnector.addJiraComment(issueKey,prDescription);
   } catch (error) {
     console.log(error);
     console.log('JIRA key was not found');

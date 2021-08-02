@@ -53,38 +53,7 @@ export class JiraConnector {
     }
   }
 
-  async addTicketComment(key: string, comment: string): Promise<JIRADetails> {
-    try {
-      const issue: JIRA.Issue = await this.getIssue(key);
-      const {
-        fields: { issuetype: type, project, summary },
-      } = issue;
-
-      await this.addComment(key, comment);
-
-      return {
-        key,
-        summary,
-        url: `${this.JIRA_BASE_URL}/browse/${key}`,
-        type: {
-          name: type.name,
-          icon: type.iconUrl,
-        },
-        project: {
-          name: project.name,
-          url: `${this.JIRA_BASE_URL}/browse/${project.key}`,
-          key: project.key,
-        },
-      };
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data);
-      }
-      throw error;
-    }
-  }
-
-  async addComment(id: string, comment: string): Promise<JIRA.Issue> {
+  async addJiraComment(id: string, comment: string): Promise<JIRA.Issue> {
     const url = `/issue/${id}/comment`;
     const response = await this.client.post<JIRA.Issue>(url,{
       body: comment
