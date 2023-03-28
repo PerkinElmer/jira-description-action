@@ -12,7 +12,7 @@ export const getInputs = (): IActionInputs => {
   const WHAT_TO_USE: ESource = (core.getInput('use', { required: false }) as ESource) || ESource.prTitle;
   const JIRA_USER: string = core.getInput('jira-user', { required: true });
   const JIRA_PASSWORD: string = core.getInput('jira-password', { required: true });
-  const GITHUB_REPO_NAME: string = core.getInput('github-repo-name', { required: false }) || 'signals';
+  const GITHUB_REPO_NAME: string = core.getInput('github-repo-name', { required: false });
   return {
     JIRA_TOKEN,
     GITHUB_TOKEN,
