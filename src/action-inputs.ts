@@ -10,8 +10,9 @@ export const getInputs = (): IActionInputs => {
   const JIRA_PROJECT_KEY = core.getInput('jira-project-key', { required: false });
   const FAIL_WHEN_JIRA_ISSUE_NOT_FOUND = core.getInput('fail-when-jira-issue-not-found', { required: false }) === 'true' || false;
   const WHAT_TO_USE: ESource = (core.getInput('use', { required: false }) as ESource) || ESource.prTitle;
-  const JIRA_USER: string = core.getInput('jira-user', {required: true});
-  const JIRA_PASSWORD: string = core.getInput('jira-password', {required: true});
+  const JIRA_USER: string = core.getInput('jira-user', { required: true });
+  const JIRA_PASSWORD: string = core.getInput('jira-password', { required: true });
+  const GITHUB_REPO_NAME: string = core.getInput('github-repo-name', { required: false }) || 'signals';
   return {
     JIRA_TOKEN,
     GITHUB_TOKEN,
@@ -22,6 +23,7 @@ export const getInputs = (): IActionInputs => {
     FAIL_WHEN_JIRA_ISSUE_NOT_FOUND,
     JIRA_BASE_URL: JIRA_BASE_URL.endsWith('/') ? JIRA_BASE_URL.replace(/\/$/, '') : JIRA_BASE_URL,
     JIRA_USER,
-    JIRA_PASSWORD
+    JIRA_PASSWORD,
+    GITHUB_REPO_NAME,
   };
 };

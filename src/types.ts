@@ -102,6 +102,7 @@ export interface IActionInputs {
   FAIL_WHEN_JIRA_ISSUE_NOT_FOUND: boolean;
   JIRA_USER: string;
   JIRA_PASSWORD: string;
+  GITHUB_REPO_NAME: string;
 }
 
 export interface IGithubData {
