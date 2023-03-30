@@ -36,7 +36,7 @@ inputs:
   jira-password:
     description: 'Jira password to authenitcate with'
     required: true
-  github-repo-name:
+  repo-name:
     description: 'When adding comment to jira, build up the pr link using this repo name'
     required: false
     default: 'signals'
