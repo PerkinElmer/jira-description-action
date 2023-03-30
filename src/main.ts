@@ -9,6 +9,7 @@ async function run(): Promise<void> {
   const { FAIL_WHEN_JIRA_ISSUE_NOT_FOUND } = getInputs();
   try {
     const { BRANCH_IGNORE_PATTERN, REPO_NAME } = getInputs();
+    console.log(`main.ts REPO_NAME from inputs: ${REPO_NAME}`);
 
     const githubConnector = new GithubConnector();
     const jiraConnector = new JiraConnector();

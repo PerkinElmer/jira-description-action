@@ -13,6 +13,10 @@ export const getInputs = (): IActionInputs => {
   const JIRA_USER: string = core.getInput('jira-user', { required: true });
   const JIRA_PASSWORD: string = core.getInput('jira-password', { required: true });
   const REPO_NAME: string = core.getInput('repo-name', { required: false });
+  console.log(`This is repo name from action.inputs: ${REPO_NAME}`);
+  console.log(`This is repo name from reading env variable: ${process.env['INPUT_REPO_NAME']}`);
+  console.log(`This is repo name from reading env variable: ${process.env['INPUT_REPO-NAME']}`);
+  console.log(`This is github.repository name from reading env variable: ${process.env['INPUT_GITHUB.REPOSITORY']}`);
   return {
     JIRA_TOKEN,
     GITHUB_TOKEN,
