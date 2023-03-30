@@ -26,14 +26,13 @@ async function run(): Promise<void> {
     const issueKey = githubConnector.getIssueKeyFromTitle();
     if (!issueKey) throw core.error;
 
-    const name = REPO_NAME || 'signals';
     console.log(`JIRA key -> ${issueKey}`);
-    console.log(`GITHUB_REPO_NAME -> ${name}`);
+    console.log(`GITHUB_REPO_NAME -> ${REPO_NAME}`);
     console.log();
 
     const jiraDetails = await jiraConnector.getTicketDetails(issueKey);
     const prData = (await githubConnector.updatePrDetails(jiraDetails)) || '';
-    const prLink = `https://github.com/PerkinElmer/${name}/pull/${prData.pull_number}`;
+    const prLink = `https://github.com/${REPO_NAME}/pull/${prData.pull_number}`;
     const options = { preserveNewlines: true, wordwrap: 130 };
     let prBodyText = (prData.body || '').replace(/#/g, '');
     prBodyText = prBodyText.substring(prBodyText.lastIndexOf('Description'), prBodyText.lastIndexOf('Checklist'));
