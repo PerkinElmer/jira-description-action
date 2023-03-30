@@ -8,7 +8,7 @@ import { convert } from 'html-to-text';
 async function run(): Promise<void> {
   const { FAIL_WHEN_JIRA_ISSUE_NOT_FOUND } = getInputs();
   try {
-    const { BRANCH_IGNORE_PATTERN, GITHUB_REPO_NAME } = getInputs();
+    const { BRANCH_IGNORE_PATTERN, REPO_NAME } = getInputs();
 
     const githubConnector = new GithubConnector();
     const jiraConnector = new JiraConnector();
@@ -25,12 +25,14 @@ async function run(): Promise<void> {
     const issueKey = githubConnector.getIssueKeyFromTitle();
     if (!issueKey) throw core.error;
 
+    const name = REPO_NAME || 'signals';
     console.log(`JIRA key -> ${issueKey}`);
-    console.log(`GITHUB_REPO_NAME -> ${GITHUB_REPO_NAME}`);
+    console.log(`GITHUB_REPO_NAME -> ${name}`);
+    console.log();
 
     const jiraDetails = await jiraConnector.getTicketDetails(issueKey);
     const prData = (await githubConnector.updatePrDetails(jiraDetails)) || '';
-    const prLink = `https://github.com/PerkinElmer/${GITHUB_REPO_NAME}/pull/${prData.pull_number}`;
+    const prLink = `https://github.com/PerkinElmer/${name}/pull/${prData.pull_number}`;
     const options = { preserveNewlines: true, wordwrap: 130 };
     let prBodyText = (prData.body || '').replace(/#/g, '');
     prBodyText = prBodyText.substring(prBodyText.lastIndexOf('Description'), prBodyText.lastIndexOf('Checklist'));
