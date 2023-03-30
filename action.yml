@@ -39,7 +39,6 @@ inputs:
   repo-name:
     description: 'When adding comment to jira, build up the pr link using this repo name'
     required: false
-    default: 'signals'
 runs:
   using: 'node12'
   main: 'lib/index.js'
