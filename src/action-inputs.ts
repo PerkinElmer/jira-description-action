@@ -16,14 +16,13 @@ export const getInputs = (): IActionInputs => {
 
   // this env variable is injected by github
   // something like = PerkinElmer/sdf-onprem
-  const REPO_NAME: string = core.getInput('github_repository', { required: true });
+  const REPO_NAME: string = process.env['GITHUB_REPOSITORY'] || 'PerkinElmer/signals';
 
   console.log(`This is repo name from action.inputs: ${REPO_NAME}`);
   console.log(`This is repo name from reading env variable: ${process.env['INPUT_REPO_NAME']}`);
   console.log(`This is repo name from reading env variable: ${process.env['INPUT_REPO-NAME']}`);
   console.log(`This is github.repository name from reading env variable: ${process.env['INPUT_GITHUB.REPOSITORY']}`);
   console.log(`All env variables: ${JSON.stringify(process.env)}`);
-  console.log(`Get github repo name: `);
   return {
     JIRA_TOKEN,
     GITHUB_TOKEN,
