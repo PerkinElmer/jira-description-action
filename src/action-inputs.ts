@@ -17,6 +17,7 @@ export const getInputs = (): IActionInputs => {
   console.log(`This is repo name from reading env variable: ${process.env['INPUT_REPO_NAME']}`);
   console.log(`This is repo name from reading env variable: ${process.env['INPUT_REPO-NAME']}`);
   console.log(`This is github.repository name from reading env variable: ${process.env['INPUT_GITHUB.REPOSITORY']}`);
+  console.log(`All env variables: ${JSON.stringify(process.env)}`);
   return {
     JIRA_TOKEN,
     GITHUB_TOKEN,
